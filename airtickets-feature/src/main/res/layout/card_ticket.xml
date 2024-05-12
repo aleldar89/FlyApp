@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_12"
+        android:background="@drawable/shape_rounded"
+        android:backgroundTint="@color/grey_3"
+        android:paddingStart="@dimen/space_16"
+        android:paddingTop="@dimen/space_16"
+        android:paddingBottom="@dimen/space_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/txtPrice"
+            style="?attr/textAppearanceTitleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/shape_circle_size"
+            android:layout_height="@dimen/shape_circle_size"
+            android:layout_marginTop="@dimen/space_24"
+            android:src="@drawable/shape_circle"
+            app:layout_constraintStart_toStartOf="@id/txtPrice"
+            app:layout_constraintTop_toBottomOf="@id/txtPrice"
+            app:tint="@color/red" />
+
+        <TextView
+            android:id="@+id/txtDepartureData"
+            style="?attr/textAppearanceBodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/space_8"
+            android:text="@string/time"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/txtDepartureAirport"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toTopOf="@id/imageView" />
+
+        <ImageView
+            android:id="@+id/iconMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2"
+            android:src="@drawable/ic_minus"
+            app:layout_constraintBottom_toBottomOf="@id/txtDepartureData"
+            app:layout_constraintStart_toEndOf="@id/txtDepartureData"
+            app:layout_constraintTop_toTopOf="@id/txtDepartureData" />
+
+        <TextView
+            android:id="@+id/txtArrivalData"
+            style="?attr/textAppearanceBodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2"
+            android:text="@string/time"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/txtDepartureData"
+            app:layout_constraintStart_toEndOf="@id/iconMinus"
+            app:layout_constraintTop_toTopOf="@id/txtDepartureData" />
+
+        <TextView
+            android:id="@+id/txtHours"
+            style="?attr/textAppearanceTitleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_16"
+            android:text="@string/hours"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/txtDepartureData"
+            app:layout_constraintStart_toEndOf="@id/txtArrivalData"
+            app:layout_constraintTop_toTopOf="@id/txtDepartureData" />
+
+        <TextView
+            android:id="@+id/txtWithoutTransfer"
+            style="?attr/textAppearanceTitleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/without_transfer"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/txtDepartureData"
+            app:layout_constraintStart_toEndOf="@id/txtHours"
+            app:layout_constraintTop_toTopOf="@id/txtDepartureData" />
+
+
+        <TextView
+            android:id="@+id/txtDepartureAirport"
+            style="?attr/textAppearanceBodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:paddingStart="@dimen/space_8"
+            android:text="@string/airport"
+            android:textColor="@color/grey_6"
+            app:layout_constraintBottom_toBottomOf="@id/imageView"
+            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintTop_toBottomOf="@id/txtDepartureData" />
+
+        <TextView
+            android:id="@+id/txtArrivalAirport"
+            style="?attr/textAppearanceBodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/airport"
+            android:textColor="@color/grey_6"
+            app:layout_constraintBottom_toBottomOf="@id/txtDepartureAirport"
+            app:layout_constraintStart_toStartOf="@id/txtArrivalData"
+            app:layout_constraintTop_toTopOf="@id/txtDepartureAirport" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rounded_background"
+        android:backgroundTint="@color/blue"
+        android:paddingHorizontal="@dimen/space_10"
+        android:paddingVertical="@dimen/space_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtBadge"
+            style="?attr/textAppearanceBodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/badge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

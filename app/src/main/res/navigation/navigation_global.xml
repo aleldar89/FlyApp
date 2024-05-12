@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_global"
+    app:startDestination="@id/airticketsMainFragment">
+
+    <fragment
+        android:id="@+id/airticketsMainFragment"
+        android:name="com.example.airtickets_feature.fragments.AirticketsMainFragment"
+        android:label="AirticketsFragment" />
+    <fragment
+        android:id="@+id/hotelsMainFragment"
+        android:name="com.example.hotels_feature.HotelsFragment"
+        android:label="HotelsFragment" />
+    <fragment
+        android:id="@+id/subscribeMainFragment"
+        android:name="com.example.subscribe_feature.SubscribeFragment"
+        android:label="SubscribeFragment" />
+    <fragment
+        android:id="@+id/shortMainFragment"
+        android:name="com.example.short_feature.ShortFragment"
+        android:label="ShortFragment" />
+    <fragment
+        android:id="@+id/profileMainFragment"
+        android:name="com.example.profile_feature.ProfileFragment"
+        android:label="ProfileFragment" />
+    <dialog
+        android:id="@+id/searchBottomSheetFragment"
+        android:name="com.example.airtickets_feature.fragments.SearchBottomSheetFragment"
+        android:label="SearchBottomSheetFragment" />
+    <fragment
+        android:id="@+id/searchCountryFragment"
+        android:name="com.example.airtickets_feature.fragments.SearchCountryFragment"
+        android:label="SearchCountryFragment" />
+    <fragment
+        android:id="@+id/allTicketsFragment"
+        android:name="com.example.airtickets_feature.fragments.AllTicketsFragment"
+        android:label="AllTicketsFragment" />
+</navigation>

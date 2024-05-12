@@ -1,0 +1,41 @@
+<resources>
+    <string name="title_search">Поиск дешевых\nавиабилетов</string>
+    <string name="title_music_fly">Музыкально отлететь</string>
+    <string name="from_loc">Откуда - Москва</string>
+    <string name="to_loc">Куда - Турция</string>
+    <string name="music_name">Название группы</string>
+    <string name="city">Город</string>
+    <string name="stambul">Стамбул</string>
+    <string name="sochi">Сочи</string>
+    <string name="phuket">Пхукет</string>
+    <string name="price">от %s ₽</string>
+    <string name="diff_route">Сложный\nмаршрут</string>
+    <string name="globe">Куда угодно</string>
+    <string name="calendar">Выходные</string>
+    <string name="hot_tickets">Горячие \nбилеты</string>
+    <string name="pop_route">Популярное направление</string>
+    <string name="back">Обратно</string>
+    <string name="date">Дата</string>
+    <string name="day_of_week">, %s</string>
+    <string name="def_passengers">1, эконом</string>
+    <string name="filtres">фильтры</string>
+    <string name="company_name">Название компании</string>
+    <string name="time_shedule">Расписание</string>
+    <string name="value">%s ₽</string>
+    <string name="direct_fly">Прямые рейсы</string>
+    <string name="show_all">Показать всё</string>
+    <string name="look_all_tickets">Посмотреть все билеты</string>
+    <string name="subscribe_price">Подписка на цену</string>
+    <string name="time">time</string>
+    <string name="hours">%sч в пути</string>
+    <string name="without_transfer">/Без пересадок</string>
+    <string name="airport">AIR</string>
+    <string name="badge">Значок</string>
+    <string name="from">Откуда</string>
+    <string name="to">-%s</string>
+    <string name="detail_data">%s, 1 пассажир</string>
+    <string name="filter">Фильтр</string>
+    <string name="price_graph">График цен</string>
+
+    <string name="cyrillic_pattern">абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</string>
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="WideButton" parent="Widget.Material3.Button">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Small.</item>
+        <item name="android:textAppearance">@style/WideButtonText</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3.Corner.Small." parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/corner_radius_8</item>
+    </style>
+
+    <style name="WideButtonText" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">@dimen/txt_size_16</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_regular_italic</item>
+    </style>
+
+    <style name="TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">@dimen/txt_size_22</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_semibold</item>
+    </style>
+
+    <style name="TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">@dimen/txt_size_16</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_semibold</item>
+    </style>
+
+    <style name="TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">@dimen/txt_size_14</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+
+    <style name="BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">@dimen/txt_size_16</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_regular_italic</item>
+    </style>
+
+    <style name="BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">@dimen/txt_size_14</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_regular_italic</item>
+    </style>
+
+    <style name="RegularStyle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">@dimen/txt_size_16</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+
+    <style name="RoundedCornerImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/corner_radius_16</item>
+    </style>
+
+    <style name="BottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="android:textColor">@color/selector_bottom_nav_color</item>
+        <item name="itemIconTint">@color/selector_bottom_nav_color</item>
+        <item name="itemTextColor">@color/selector_bottom_nav_color</item>
+    </style>
+
+    <style name="TransparentDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+</resources>

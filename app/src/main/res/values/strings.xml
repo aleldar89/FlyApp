@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tickets</string>
+    <string name="title_airtickets">Авиабилеты</string>
+    <string name="title_hotels">Отели</string>
+    <string name="title_short">Короче</string>
+    <string name="title_subscribe">Подписки</string>
+    <string name="title_profile">Профиль</string>
+</resources>

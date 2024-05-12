@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_airtickets"
+    app:startDestination="@id/airticketsMainFragment">
+    <fragment
+        android:id="@+id/airticketsMainFragment"
+        android:name="com.example.airtickets_feature.fragments.AirticketsMainFragment"
+        android:label="MainFragment" />
+    <dialog
+        android:id="@+id/searchBottomSheetFragment"
+        android:name="com.example.airtickets_feature.fragments.SearchBottomSheetFragment"
+        android:label="SearchBottomSheetFragment" >
+    </dialog>
+    <fragment
+        android:id="@+id/searchCountryFragment"
+        android:name="com.example.airtickets_feature.fragments.SearchCountryFragment"
+        android:label="SearchCountryFragment" />
+    <fragment
+        android:id="@+id/allTicketsFragment"
+        android:name="com.example.airtickets_feature.fragments.AllTicketsFragment"
+        android:label="AllTicketsFragment" />
+</navigation>

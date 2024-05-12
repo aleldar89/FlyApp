@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/space_16"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/circle"
+        android:layout_width="@dimen/shape_circle_size"
+        android:layout_height="@dimen/shape_circle_size"
+        android:src="@drawable/shape_circle"
+        app:tint="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/companyName"
+        style="?attr/textAppearanceBodySmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/company_name"
+        android:layout_marginStart="@dimen/space_8"
+        app:layout_constraintStart_toEndOf="@id/circle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/value"
+        style="?attr/textAppearanceBodySmall"
+        android:textColor="@color/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_4"
+        android:text="@string/value"
+        app:layout_constraintEnd_toStartOf="@id/rightArrow"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/rightArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/value"
+        app:layout_constraintBottom_toBottomOf="@id/value"
+        android:src="@drawable/ic_right_arrow" />
+
+    <TextView
+        android:id="@+id/timeShedule"
+        style="?attr/textAppearanceTitleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/time_shedule"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/companyName"
+        app:layout_constraintTop_toBottomOf="@id/companyName" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@color/grey_5"
+        app:layout_constraintTop_toBottomOf="@id/timeShedule"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
