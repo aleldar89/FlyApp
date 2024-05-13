@@ -14,7 +14,7 @@
     android:background="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searchContainer"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_inner_rounded_gray_rectangle"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iconSearch"
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingEnd="@dimen/space_8"
@@ -44,8 +44,8 @@
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iconSearch"
-            app:layout_constraintTop_toTopOf="@id/iconSearch" />
+            app:layout_constraintStart_toEndOf="@id/back"
+            app:layout_constraintTop_toTopOf="@id/back" />
 
         <ImageView
             android:id="@+id/exchangeIcon"
@@ -63,7 +63,7 @@
             android:layout_marginVertical="@dimen/space_8"
             android:background="@color/grey_5"
             app:layout_constraintBottom_toTopOf="@id/inputTxtTo"
-            app:layout_constraintStart_toEndOf="@id/iconSearch"
+            app:layout_constraintStart_toEndOf="@id/back"
             app:layout_constraintTop_toBottomOf="@id/inputTxtFrom" />
 
         <EditText
@@ -75,9 +75,9 @@
             android:hint="@string/to_loc"
             android:textAppearance="?attr/textAppearanceTitleMedium"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@id/iconSearch"
+            app:layout_constraintBottom_toBottomOf="@id/back"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iconSearch"
+            app:layout_constraintStart_toEndOf="@id/back"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
         <ImageView
@@ -99,7 +99,7 @@
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchContainer">
+        app:layout_constraintTop_toBottomOf="@id/container">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -229,8 +229,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_16"
             android:text="@string/direct_fly"
-            app:layout_constraintStart_toStartOf="@id/searchContainer"
-            app:layout_constraintTop_toBottomOf="@id/searchContainer" />
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/container" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -249,7 +249,7 @@
             android:textColor="@color/blue" />
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnShowAll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -261,13 +261,14 @@
         app:layout_constraintTop_toBottomOf="@id/directFlightContainer" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/subscribeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_24"
         android:layout_marginBottom="@dimen/space_40"
         android:background="@drawable/shape_rounded"
         android:backgroundTint="@color/grey_3"
-        android:padding="@dimen/space_14"
+        android:paddingHorizontal="@dimen/space_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnShowAll">

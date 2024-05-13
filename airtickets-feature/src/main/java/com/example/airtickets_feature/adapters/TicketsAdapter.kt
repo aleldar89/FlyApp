@@ -2,14 +2,15 @@ package com.example.airtickets_feature.adapters
 
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.ViewGroup
 import com.example.airtickets_data.models.BaseModel
 import com.example.airtickets_data.models.TicketModel
 import com.example.airtickets_feature.databinding.CardTicketBinding
+import com.example.airtickets_feature.utils.calculateHoursDifference
+import com.example.airtickets_feature.utils.convertTime
+import com.example.airtickets_feature.utils.formatPrice
 import com.example.common_resources.R
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.abs
 
 fun ticketAdapterDelegate() =
     adapterDelegateViewBinding<TicketModel, BaseModel, CardTicketBinding>(
@@ -19,17 +20,22 @@ fun ticketAdapterDelegate() =
     ) {
         bind {
             binding.apply {
-                if (item.badge.isNullOrBlank())
+
+                if (item.badge.isNullOrBlank()) {
                     badge.visibility = GONE
-                else {
+                    (container.layoutParams as ViewGroup.MarginLayoutParams).topMargin =
+                        context.resources.getDimensionPixelSize(R.dimen.space_16)
+                } else {
                     badge.visibility = VISIBLE
                     txtBadge.text = item.badge
+                    (container.layoutParams as ViewGroup.MarginLayoutParams).topMargin =
+                        context.resources.getDimensionPixelSize(R.dimen.space_24)
                 }
 
-
-                txtPrice.text = item.price.value.toString()
-                txtDepartureData.text = item.departure.date
-                txtArrivalData.text = item.arrival.date
+                txtPrice.text =
+                    context.resources.getString(R.string.value, formatPrice(item.price.value))
+                txtDepartureData.text = convertTime(item.departure.date)
+                txtArrivalData.text = convertTime(item.arrival.date)
                 txtDepartureAirport.text = item.departure.airport
                 txtArrivalAirport.text = item.arrival.airport
 
@@ -45,10 +51,3 @@ fun ticketAdapterDelegate() =
             }
         }
     }
-
-fun calculateHoursDifference(departureDate: String, arrivalDate: String): Long {
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-    val departure = dateFormat.parse(departureDate)
-    val arrival = dateFormat.parse(arrivalDate)
-    return abs((arrival.time - departure.time) / (1000 * 60 * 60))
-}

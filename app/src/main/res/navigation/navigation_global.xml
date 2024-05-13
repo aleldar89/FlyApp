@@ -36,4 +36,8 @@
         android:id="@+id/allTicketsFragment"
         android:name="com.example.airtickets_feature.fragments.AllTicketsFragment"
         android:label="AllTicketsFragment" />
+    <fragment
+        android:id="@+id/emptyFragment"
+        android:name="com.example.airtickets_feature.fragments.EmptyFragment"
+        android:label="EmptyFragment" />
 </navigation>

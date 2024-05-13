@@ -14,6 +14,7 @@ fun offerAdapterDelegate() =
     ) {
         bind {
             binding.apply {
+
                 imageView.loadImage(
                     when (item.id) {
                         1 -> R.drawable.one
@@ -32,20 +33,3 @@ fun offerAdapterDelegate() =
             }
         }
     }
-
-//class OfferDiffCallback : DiffUtil.ItemCallback<OfferModel>() {
-//    override fun areItemsTheSame(oldItem: OfferModel, newItem: OfferModel): Boolean =
-//        oldItem.id == newItem.id
-//
-//    override fun areContentsTheSame(oldItem: OfferModel, newItem: OfferModel): Boolean =
-//        oldItem == newItem
-//}
-//
-//class BaseDiffCallback : DiffUtil.ItemCallback<BaseModel>() {
-//    override fun areItemsTheSame(oldItem: BaseModel, newItem: BaseModel): Boolean =
-//        oldItem.id == newItem.id
-//
-//    @SuppressLint("DiffUtilEquals")
-//    override fun areContentsTheSame(oldItem: BaseModel, newItem: BaseModel): Boolean =
-//        oldItem == newItem
-//}

@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/searchContainer"
+        android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_36"
@@ -96,8 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/title_music_fly"
-        app:layout_constraintStart_toStartOf="@id/searchContainer"
-        app:layout_constraintTop_toBottomOf="@id/searchContainer" />
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/container" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

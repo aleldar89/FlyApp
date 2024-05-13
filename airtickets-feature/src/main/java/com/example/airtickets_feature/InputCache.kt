@@ -19,7 +19,7 @@ class InputCache @Inject constructor(
     val departureLocation: LiveData<String?> = _departureLocation
 
     private val _arrivalLocation = MutableLiveData<String?>(null)
-    val arrivalLocation: LiveData<String?> = _departureLocation
+    val arrivalLocation: LiveData<String?> = _arrivalLocation
 
     init {
         prefs.getString(departureLocationKey, null)?.let {
@@ -28,7 +28,6 @@ class InputCache @Inject constructor(
         prefs.getString(arrivalLocationKey, null)?.let {
             _arrivalLocation.value = it
         }
-//            ?: prefs.edit { clear() }
     }
 
     @Synchronized

@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.airtickets_feature.AirticketsViewModel
 import com.example.airtickets_feature.databinding.FragmentBottomSheetBinding
+import com.example.airtickets_feature.loadImage
 import com.example.common_resources.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,15 +49,14 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
             }
 
             inputTxtTo.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?, start: Int, count: Int, after: Int
-                ) {}
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
                     val text = s.toString().trim()
                     if (text.isNotEmpty()) {
+                        dismiss()
                         findNavController().navigate(
                             com.example.airtickets_feature.R.id.searchCountryFragment
                         )
@@ -64,7 +64,7 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
                 }
             })
         }
-
+        loadImages()
         setClickListeners()
     }
 
@@ -86,7 +86,7 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
                 viewModel.saveDepartureLocation(inputTxtFrom.text.toString())
 
             if (inputTxtTo.text != null)
-                viewModel.saveArrivalLocation(inputTxtFrom.text.toString())
+                viewModel.saveArrivalLocation(inputTxtTo.text.toString())
         }
     }
 
@@ -104,6 +104,35 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
             routeContainer3.setOnClickListener {
                 inputTxtTo.setText(cityName3.text)
             }
+            anywhere.setOnClickListener {
+                inputTxtTo.setText(
+                    context?.resources?.getString(
+                        R.string.anywhere
+                    )
+                )
+            }
+            diffRoute.setOnClickListener {
+                navigateToEmpty()
+            }
+            weekend.setOnClickListener {
+                navigateToEmpty()
+            }
+            hot.setOnClickListener {
+                navigateToEmpty()
+            }
         }
+    }
+
+    private fun loadImages() {
+        binding.apply {
+            imageView1.loadImage(com.example.airtickets_feature.R.drawable.four)
+            imageView2.loadImage(com.example.airtickets_feature.R.drawable.five)
+            imageView3.loadImage(com.example.airtickets_feature.R.drawable.six)
+        }
+    }
+
+    private fun navigateToEmpty() {
+        dismiss()
+        findNavController().navigate(com.example.airtickets_feature.R.id.emptyFragment)
     }
 }

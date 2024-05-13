@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
@@ -65,18 +66,24 @@ class AirticketsViewModel @Inject constructor(
         inputCache.saveArrivalLocation(location)
     }
 
-    private fun getCurrentDate() {
-        val currentDate = Calendar.getInstance().time
-        val date =
-            SimpleDateFormat("dd MMM", Locale.getDefault()).format(currentDate)
-        val dayOfWeek =
-            SimpleDateFormat("EE", Locale.getDefault()).format(currentDate)
-
+    fun saveDepartureDate(date: Calendar) {
         _departureDate.value = Pair(
-            date,
-            resources.getString(R.string.day_of_week, dayOfWeek)
+            dateFormat().format(date.time),
+            resources.getString(R.string.day_of_week, dayOfWeekFormat().format(date.time))
         )
     }
+
+    private fun getCurrentDate() {
+        val currentDate = Calendar.getInstance().time
+        _departureDate.value = Pair(
+            dateFormat().format(currentDate),
+            resources.getString(R.string.day_of_week, dayOfWeekFormat().format(currentDate))
+        )
+    }
+
+    fun dateFormat() = SimpleDateFormat("dd MMM", Locale("ru", "RU"))
+
+    fun dayOfWeekFormat() = SimpleDateFormat("EE", Locale("ru", "RU"))
 
     private fun doRequest(
         request: suspend () -> Unit

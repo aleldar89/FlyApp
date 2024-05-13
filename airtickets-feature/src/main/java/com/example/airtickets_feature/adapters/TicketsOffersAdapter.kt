@@ -5,6 +5,7 @@ import com.example.airtickets_data.models.BaseModel
 import com.example.airtickets_data.models.TicketOfferModel
 import com.example.common_resources.R
 import com.example.airtickets_feature.databinding.CardDirectFlightBinding
+import com.example.airtickets_feature.utils.formatPrice
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun ticketOfferAdapterDelegate() =
@@ -15,10 +16,11 @@ fun ticketOfferAdapterDelegate() =
     ) {
         bind {
             binding.apply {
+
                 circle.setColorFilter(
                     ContextCompat.getColor(
                         context,
-                        when (binding.companyName.text.toString()) {
+                        when (item.title) {
                             "Уральские авиалинии" -> R.color.red
                             "Победа" -> R.color.blue
                             "NordStar" -> R.color.white
@@ -26,12 +28,10 @@ fun ticketOfferAdapterDelegate() =
                         }
                     )
                 )
-                companyName.text = item.title
-                timeShedule.text = item.timeRange.joinToString(" ")
-                value.text = context.resources.getString(
-                    R.string.value,
-                    item.price.value.toString()
-                )
+                txtCompanyName.text = item.title
+                txtTimeShedule.text = item.timeRange.joinToString(" ")
+                txtPrice.text =
+                    context.resources.getString(R.string.value, formatPrice(item.price.value))
             }
         }
     }

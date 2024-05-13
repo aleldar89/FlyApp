@@ -51,7 +51,8 @@ class SearchCountryFragment : Fragment() {
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
             viewModel.ticketsOffersData.observe(viewLifecycleOwner) { ticketsOffers ->
-                adapter.items = ticketsOffers
+                val itemsToShow = ticketsOffers.take(3) // Взять только первые три элемента
+                adapter.items = itemsToShow
                 adapter.notifyDataSetChanged() //FIXME
             }
         }
@@ -92,6 +93,12 @@ class SearchCountryFragment : Fragment() {
             btnDepartureData.setOnClickListener {
                 showDatePicker()
             }
+            clearIcon.setOnClickListener {
+                inputTxtTo.setText("")
+            }
+            back.setOnClickListener {
+                    findNavController().navigateUp()
+                }
             binding.btnShowAll.setOnClickListener {
                 findNavController().navigate(
                     com.example.airtickets_feature.R.id.allTicketsFragment
@@ -142,15 +149,13 @@ class SearchCountryFragment : Fragment() {
     }
 
     private fun updateDateViews(date: Calendar) {
-        val dateFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
-        val formattedDate = dateFormat.format(date.time)
-        binding.txtDepartureData.text = formattedDate
-
-        val dayOfWeekFormat = SimpleDateFormat("EE", Locale.getDefault())
-        val dayOfWeek = dayOfWeekFormat.format(date.time)
-        binding.txtDepartureDay.text = context?.resources?.getString(
-            R.string.day_of_week,
-            dayOfWeek
-        )
+        binding.apply {
+            txtDepartureData.text = viewModel.dateFormat().format(date.time)
+            txtDepartureDay.text = context?.resources?.getString(
+                R.string.day_of_week,
+                viewModel.dayOfWeekFormat().format(date.time)
+            )
+        }
+        viewModel.saveDepartureDate(date)
     }
 }

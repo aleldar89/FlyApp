@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searchContainer"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_24"
@@ -101,7 +101,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/diff_route"
+        android:id="@+id/diffRoute"
         android:layout_width="@dimen/modal_btn_size"
         android:layout_height="@dimen/modal_btn_size"
         android:layout_marginTop="@dimen/space_24"
@@ -109,24 +109,24 @@
         android:backgroundTint="@color/green"
         android:padding="@dimen/space_12"
         android:src="@drawable/ic_diff_route"
-        app:layout_constraintEnd_toStartOf="@id/globe"
+        app:layout_constraintEnd_toStartOf="@id/anywhere"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchContainer" />
+        app:layout_constraintTop_toBottomOf="@id/container" />
 
     <TextView
-        android:id="@+id/txt_diff_route"
+        android:id="@+id/txtDiffRoute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_8"
         android:gravity="center"
         android:text="@string/diff_route"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@id/diff_route"
-        app:layout_constraintStart_toStartOf="@id/diff_route"
-        app:layout_constraintTop_toBottomOf="@id/diff_route" />
+        app:layout_constraintEnd_toEndOf="@id/diffRoute"
+        app:layout_constraintStart_toStartOf="@id/diffRoute"
+        app:layout_constraintTop_toBottomOf="@id/diffRoute" />
 
     <ImageView
-        android:id="@+id/globe"
+        android:id="@+id/anywhere"
         android:layout_width="@dimen/modal_btn_size"
         android:layout_height="@dimen/modal_btn_size"
         android:layout_marginTop="@dimen/space_24"
@@ -134,23 +134,23 @@
         android:backgroundTint="@color/blue"
         android:padding="@dimen/space_12"
         android:src="@drawable/ic_globe"
-        app:layout_constraintEnd_toStartOf="@id/calendar"
-        app:layout_constraintStart_toEndOf="@id/diff_route"
-        app:layout_constraintTop_toBottomOf="@id/searchContainer" />
+        app:layout_constraintEnd_toStartOf="@id/weekend"
+        app:layout_constraintStart_toEndOf="@id/diffRoute"
+        app:layout_constraintTop_toBottomOf="@id/container" />
 
     <TextView
-        android:id="@+id/txt_globe"
+        android:id="@+id/txtAnywhere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_8"
-        android:text="@string/globe"
+        android:text="@string/anywhere"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@id/globe"
-        app:layout_constraintStart_toStartOf="@id/globe"
-        app:layout_constraintTop_toBottomOf="@id/globe" />
+        app:layout_constraintEnd_toEndOf="@id/anywhere"
+        app:layout_constraintStart_toStartOf="@id/anywhere"
+        app:layout_constraintTop_toBottomOf="@id/anywhere" />
 
     <ImageView
-        android:id="@+id/calendar"
+        android:id="@+id/weekend"
         android:layout_width="@dimen/modal_btn_size"
         android:layout_height="@dimen/modal_btn_size"
         android:layout_marginTop="@dimen/space_24"
@@ -159,19 +159,19 @@
         android:padding="@dimen/space_12"
         android:src="@drawable/ic_calendar"
         app:layout_constraintEnd_toStartOf="@id/hot"
-        app:layout_constraintStart_toEndOf="@id/globe"
-        app:layout_constraintTop_toBottomOf="@id/searchContainer" />
+        app:layout_constraintStart_toEndOf="@id/anywhere"
+        app:layout_constraintTop_toBottomOf="@id/container" />
 
     <TextView
-        android:id="@+id/txt_calendar"
+        android:id="@+id/txtCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_8"
         android:text="@string/calendar"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@id/calendar"
-        app:layout_constraintStart_toStartOf="@id/calendar"
-        app:layout_constraintTop_toBottomOf="@id/calendar" />
+        app:layout_constraintEnd_toEndOf="@id/weekend"
+        app:layout_constraintStart_toStartOf="@id/weekend"
+        app:layout_constraintTop_toBottomOf="@id/weekend" />
 
     <ImageView
         android:id="@+id/hot"
@@ -183,8 +183,8 @@
         android:padding="@dimen/space_12"
         android:src="@drawable/ic_hot"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/calendar"
-        app:layout_constraintTop_toBottomOf="@id/searchContainer" />
+        app:layout_constraintStart_toEndOf="@id/weekend"
+        app:layout_constraintTop_toBottomOf="@id/container" />
 
     <TextView
         android:id="@+id/txt_hot"
@@ -220,7 +220,6 @@
                 android:layout_width="@dimen/placeholder_size_40"
                 android:layout_height="@dimen/placeholder_size_40"
                 android:background="@drawable/rounded_square_image"
-                android:src="@drawable/four"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -272,7 +271,6 @@
                 android:layout_width="@dimen/placeholder_size_40"
                 android:layout_height="@dimen/placeholder_size_40"
                 android:background="@drawable/rounded_square_image"
-                android:src="@drawable/five"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -324,7 +322,6 @@
                 android:layout_width="@dimen/placeholder_size_40"
                 android:layout_height="@dimen/placeholder_size_40"
                 android:background="@drawable/rounded_square_image"
-                android:src="@drawable/six"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

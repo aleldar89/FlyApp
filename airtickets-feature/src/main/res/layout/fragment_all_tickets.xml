@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back_blue"
@@ -36,8 +36,8 @@
             android:text="@string/from"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/txtDetails"
-            app:layout_constraintStart_toEndOf="@id/imageView"
-            app:layout_constraintTop_toTopOf="@id/imageView" />
+            app:layout_constraintStart_toEndOf="@id/back"
+            app:layout_constraintTop_toTopOf="@id/back" />
 
         <TextView
             android:id="@+id/txtTo"
@@ -59,8 +59,8 @@
             android:paddingStart="@dimen/space_14"
             android:text="@string/detail_data"
             android:textColor="@color/grey_6"
-            app:layout_constraintBottom_toBottomOf="@id/imageView"
-            app:layout_constraintStart_toEndOf="@id/imageView"
+            app:layout_constraintBottom_toBottomOf="@id/back"
+            app:layout_constraintStart_toEndOf="@id/back"
             app:layout_constraintTop_toBottomOf="@id/txtFrom" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -78,7 +78,7 @@
         android:id="@+id/btnContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_24"
+        android:layout_marginBottom="@dimen/space_16"
         android:background="@drawable/shape_rounded_background_50"
         android:padding="@dimen/space_10"
         app:layout_constraintBottom_toBottomOf="parent"

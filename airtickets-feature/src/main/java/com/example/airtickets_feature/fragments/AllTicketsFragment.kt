@@ -1,25 +1,19 @@
 package com.example.airtickets_feature.fragments
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airtickets_feature.AirticketsViewModel
-import com.example.airtickets_feature.adapters.calculateHoursDifference
 import com.example.airtickets_feature.adapters.ticketAdapterDelegate
-import com.example.airtickets_feature.adapters.ticketOfferAdapterDelegate
 import com.example.airtickets_feature.databinding.FragmentAllTicketsBinding
-import com.example.airtickets_feature.databinding.FragmentSearchCountryBinding
 import com.example.common_resources.R
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 @AndroidEntryPoint
 class AllTicketsFragment : Fragment() {
@@ -55,6 +49,10 @@ class AllTicketsFragment : Fragment() {
                 adapter.items = tickets
                 adapter.notifyDataSetChanged() //FIXME
             }
+
+            back.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 
@@ -73,13 +71,17 @@ class AllTicketsFragment : Fragment() {
         }
         viewModel.departureLocation.observe(viewLifecycleOwner) {
             if (it != null)
-                binding.txtFrom.setText(it)
+                binding.txtFrom.text = it
         }
         viewModel.arrivalLocation.observe(viewLifecycleOwner) {
             if (it != null)
-                binding.txtTo.setText(it)
+                binding.txtTo.text = context?.resources?.getString(
+                    R.string.to,
+                    it
+                )
         }
     }
+
     private fun removeObservers() {
         viewModel.apply {
             departureDate.removeObservers(viewLifecycleOwner)
