@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.example.airtickets_data.entities.OfferEntity
 import com.example.airtickets_data.entities.TicketEntity
 import com.example.airtickets_data.entities.TicketOfferEntity
-import com.example.airtickets_data.models.TicketOfferModel
+import com.example.domain.models.TicketOfferModel
 
 @Database(
     entities = [

@@ -3,11 +3,13 @@ package com.example.airtickets_data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.example.airtickets_data.database.AirticketsDao
-import com.example.airtickets_data.entities.toEntity
-import com.example.airtickets_data.models.OfferModel
-import com.example.airtickets_data.models.TicketModel
-import com.example.airtickets_data.models.TicketOfferModel
+import com.example.domain.models.OfferModel
+import com.example.domain.models.TicketModel
+import com.example.domain.models.TicketOfferModel
 import com.example.airtickets_data.network.ApiService
+import com.example.airtickets_data.toEntity
+import com.example.airtickets_data.toModel
+import com.example.domain.AirticketsRepository
 import com.google.gson.internal.LinkedTreeMap
 import javax.inject.Inject
 
@@ -23,21 +25,21 @@ class AirticketsRepositoryImpl @Inject constructor(
     override val offersData: LiveData<List<OfferModel>> =
         dao.getOffers().map { list ->
             list.map {
-                it.entityToModel()
+                it.toModel()
             }
         }
 
     override val ticketsOffersData: LiveData<List<TicketOfferModel>> =
         dao.getTicketsOffers().map { list ->
             list.map {
-                it.entityToModel()
+                it.toModel()
             }
         }
 
     override val ticketsData: LiveData<List<TicketModel>> =
         dao.getTickets().map { list ->
             list.map {
-                it.entityToModel()
+                it.toModel()
             }
         }
 

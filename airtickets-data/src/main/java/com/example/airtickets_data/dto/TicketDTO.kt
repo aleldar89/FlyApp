@@ -1,43 +1,41 @@
-package com.example.airtickets_data.models
+package com.example.airtickets_data.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class TicketModel(
-    override val id: Int,
+data class TicketDTO(
+    val id: Int,
     val badge: String? = null,
-    val price: PriceModel,
+    val price: PriceDTO,
     @SerializedName("provider_name")
     val providerName: String,
     val company: String,
-    val departure: FlightInfo,
-    val arrival: FlightInfo,
+    val departure: FlightInfoDTO,
+    val arrival: FlightInfoDTO,
     @SerializedName("has_transfer")
     val hasTransfer: Boolean,
     @SerializedName("has_visa_transfer")
     val hasVisaTransfer: Boolean,
-    val luggage: Luggage?,
+    val luggage: LuggageDTO,
     @SerializedName("hand_luggage")
-    val handLuggage: HandLuggage,
+    val handLuggage: HandLuggageDTO,
     @SerializedName("is_returnable")
     val isReturnable: Boolean,
     @SerializedName("is_exchangable")
     val isExchangable: Boolean
-) : BaseModel
+)
 
-data class FlightInfo(
+data class FlightInfoDTO(
     val town: String,
     val date: String,
     val airport: String
 )
 
-data class Luggage(
-    @SerializedName("has_luggage")
+data class LuggageDTO(
     val hasLuggage: Boolean,
-    val price: PriceModel? = null
+    val price: PriceDTO? = null
 )
 
-data class HandLuggage(
-    @SerializedName("has_hand_luggage")
+data class HandLuggageDTO(
     val hasHandLuggage: Boolean,
     val size: String? = null
 )

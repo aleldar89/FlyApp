@@ -2,11 +2,10 @@ package com.example.airtickets_data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.airtickets_data.models.FlightInfo
-import com.example.airtickets_data.models.HandLuggage
-import com.example.airtickets_data.models.Luggage
-import com.example.airtickets_data.models.PriceModel
-import com.example.airtickets_data.models.TicketModel
+import com.example.domain.models.FlightInfoModel
+import com.example.domain.models.HandLuggageModel
+import com.example.domain.models.LuggageModel
+import com.example.domain.models.PriceModel
 
 @Entity
 data class TicketEntity(
@@ -16,45 +15,12 @@ data class TicketEntity(
     val price: PriceModel,
     val providerName: String,
     val company: String,
-    val departure: FlightInfo,
-    val arrival: FlightInfo,
+    val departure: FlightInfoModel,
+    val arrival: FlightInfoModel,
     val hasTransfer: Boolean,
     val hasVisaTransfer: Boolean,
-    val luggage: Luggage?,
-    val handLuggage: HandLuggage,
+    val luggage: LuggageModel,
+    val handLuggage: HandLuggageModel,
     val isReturnable: Boolean,
     val isExchangable: Boolean
-) {
-
-    fun entityToModel() = TicketModel(
-        id = id,
-        badge = badge,
-        price = price,
-        providerName = providerName,
-        company = company,
-        departure = departure,
-        arrival = arrival,
-        hasTransfer = hasTransfer,
-        hasVisaTransfer = hasVisaTransfer,
-        luggage = luggage,
-        handLuggage = handLuggage,
-        isReturnable = isReturnable,
-        isExchangable = isExchangable
-    )
-}
-
-fun TicketModel.toEntity() = TicketEntity(
-    id = id,
-    badge = badge,
-    price = price,
-    providerName = providerName,
-    company = company,
-    departure = departure,
-    arrival = arrival,
-    hasTransfer = hasTransfer,
-    hasVisaTransfer = hasVisaTransfer,
-    luggage = luggage,
-    handLuggage = handLuggage,
-    isReturnable = isReturnable,
-    isExchangable = isExchangable
 )

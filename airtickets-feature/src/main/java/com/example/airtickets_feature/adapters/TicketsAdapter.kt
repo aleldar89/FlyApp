@@ -3,8 +3,8 @@ package com.example.airtickets_feature.adapters
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import com.example.airtickets_data.models.BaseModel
-import com.example.airtickets_data.models.TicketModel
+import com.example.domain.models.BaseModel
+import com.example.domain.models.TicketModel
 import com.example.airtickets_feature.databinding.CardTicketBinding
 import com.example.airtickets_feature.utils.calculateHoursDifference
 import com.example.airtickets_feature.utils.convertTime
@@ -13,7 +13,7 @@ import com.example.common_resources.R
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun ticketAdapterDelegate() =
-    adapterDelegateViewBinding<TicketModel, BaseModel, CardTicketBinding>(
+    adapterDelegateViewBinding<com.example.domain.models.TicketModel, com.example.domain.models.BaseModel, CardTicketBinding>(
         { layoutInflater, parent ->
             CardTicketBinding.inflate(layoutInflater, parent, false)
         }

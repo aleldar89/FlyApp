@@ -59,7 +59,7 @@ class AllTicketsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        removeObservers()
+        viewModel.removeObservers(viewLifecycleOwner)
     }
 
     private fun setObservers() {
@@ -79,15 +79,6 @@ class AllTicketsFragment : Fragment() {
                     R.string.to,
                     it
                 )
-        }
-    }
-
-    private fun removeObservers() {
-        viewModel.apply {
-            departureDate.removeObservers(viewLifecycleOwner)
-            ticketsData.removeObservers(viewLifecycleOwner)
-            departureLocation.removeObservers(viewLifecycleOwner)
-            arrivalLocation.removeObservers(viewLifecycleOwner)
         }
     }
 }

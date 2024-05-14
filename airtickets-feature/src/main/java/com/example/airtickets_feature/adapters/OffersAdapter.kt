@@ -1,7 +1,7 @@
 package com.example.airtickets_feature.adapters
 
-import com.example.airtickets_data.models.BaseModel
-import com.example.airtickets_data.models.OfferModel
+import com.example.domain.models.BaseModel
+import com.example.domain.models.OfferModel
 import com.example.airtickets_feature.R
 import com.example.airtickets_feature.databinding.CardMusicRouteBinding
 import com.example.airtickets_feature.loadImage

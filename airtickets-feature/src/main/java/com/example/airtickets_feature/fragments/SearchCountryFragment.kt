@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airtickets_feature.AirticketsViewModel
 import com.example.airtickets_feature.adapters.ticketOfferAdapterDelegate
 import com.example.airtickets_feature.databinding.FragmentSearchCountryBinding
+import com.example.airtickets_feature.utils.dateFormat
+import com.example.airtickets_feature.utils.dayOfWeekFormat
 import com.example.common_resources.R
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
 
 @AndroidEntryPoint
 class SearchCountryFragment : Fragment() {
@@ -62,7 +62,7 @@ class SearchCountryFragment : Fragment() {
         super.onDestroyView()
         saveRoute()
         _binding = null
-        removeObservers()
+        viewModel.removeObservers(viewLifecycleOwner)
     }
 
     override fun onPause() {
@@ -87,18 +87,10 @@ class SearchCountryFragment : Fragment() {
                 inputTxtFrom.setText(inputTxtTo.text.toString())
                 inputTxtTo.setText(tempText)
             }
-            btnBackData.setOnClickListener {
-                showDatePicker()
-            }
-            btnDepartureData.setOnClickListener {
-                showDatePicker()
-            }
-            clearIcon.setOnClickListener {
-                inputTxtTo.setText("")
-            }
-            back.setOnClickListener {
-                    findNavController().navigateUp()
-                }
+            btnBackData.setOnClickListener { showDatePicker() }
+            btnDepartureData.setOnClickListener { showDatePicker() }
+            clearIcon.setOnClickListener { inputTxtTo.setText("") }
+            back.setOnClickListener { findNavController().navigateUp() }
             binding.btnShowAll.setOnClickListener {
                 findNavController().navigate(
                     com.example.airtickets_feature.R.id.allTicketsFragment
@@ -112,24 +104,13 @@ class SearchCountryFragment : Fragment() {
             binding.txtDepartureData.text = currentDate.first
             binding.txtDepartureDay.text = currentDate.second
         }
-
         viewModel.departureLocation.observe(viewLifecycleOwner) {
             if (it != null)
                 binding.inputTxtFrom.setText(it)
         }
-
         viewModel.arrivalLocation.observe(viewLifecycleOwner) {
             if (it != null)
                 binding.inputTxtTo.setText(it)
-        }
-    }
-
-    private fun removeObservers() {
-        viewModel.apply {
-            departureDate.removeObservers(viewLifecycleOwner)
-            ticketsOffersData.removeObservers(viewLifecycleOwner)
-            departureLocation.removeObservers(viewLifecycleOwner)
-            arrivalLocation.removeObservers(viewLifecycleOwner)
         }
     }
 
@@ -150,10 +131,10 @@ class SearchCountryFragment : Fragment() {
 
     private fun updateDateViews(date: Calendar) {
         binding.apply {
-            txtDepartureData.text = viewModel.dateFormat().format(date.time)
+            txtDepartureData.text = dateFormat().format(date.time)
             txtDepartureDay.text = context?.resources?.getString(
                 R.string.day_of_week,
-                viewModel.dayOfWeekFormat().format(date.time)
+                dayOfWeekFormat().format(date.time)
             )
         }
         viewModel.saveDepartureDate(date)

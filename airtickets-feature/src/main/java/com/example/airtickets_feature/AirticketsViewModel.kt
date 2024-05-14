@@ -1,19 +1,22 @@
 package com.example.airtickets_feature
 
 import android.content.res.Resources
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.airtickets_data.models.OfferModel
-import com.example.airtickets_data.models.TicketModel
-import com.example.airtickets_data.models.TicketOfferModel
-import com.example.airtickets_data.usecases.GetOffersRemoteDataUseCase
-import com.example.airtickets_data.usecases.GetOffersUseCase
-import com.example.airtickets_data.usecases.GetTicketsOffersRemoteDataUseCase
-import com.example.airtickets_data.usecases.GetTicketsOffersUseCase
-import com.example.airtickets_data.usecases.GetTicketsRemoteDataUseCase
-import com.example.airtickets_data.usecases.GetTicketsUseCase
+import com.example.airtickets_feature.utils.dateFormat
+import com.example.airtickets_feature.utils.dayOfWeekFormat
+import com.example.domain.models.OfferModel
+import com.example.domain.models.TicketModel
+import com.example.domain.models.TicketOfferModel
+import com.example.domain.usecases.GetOffersRemoteDataUseCase
+import com.example.domain.usecases.GetOffersUseCase
+import com.example.domain.usecases.GetTicketsOffersRemoteDataUseCase
+import com.example.domain.usecases.GetTicketsOffersUseCase
+import com.example.domain.usecases.GetTicketsRemoteDataUseCase
+import com.example.domain.usecases.GetTicketsUseCase
 import com.example.common_resources.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -81,10 +84,6 @@ class AirticketsViewModel @Inject constructor(
         )
     }
 
-    fun dateFormat() = SimpleDateFormat("dd MMM", Locale("ru", "RU"))
-
-    fun dayOfWeekFormat() = SimpleDateFormat("EE", Locale("ru", "RU"))
-
     private fun doRequest(
         request: suspend () -> Unit
     ) = try {
@@ -94,4 +93,12 @@ class AirticketsViewModel @Inject constructor(
     } catch (e: Exception) {
         throw e
     }
+
+    fun removeObservers(lifecycleOwner: LifecycleOwner) =
+        arrayOf(
+            departureDate,
+            ticketsData,
+            departureLocation,
+            arrivalLocation
+        ).forEach { it.removeObservers(lifecycleOwner) }
 }

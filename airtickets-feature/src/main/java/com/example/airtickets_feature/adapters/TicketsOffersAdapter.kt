@@ -1,15 +1,15 @@
 package com.example.airtickets_feature.adapters
 
 import androidx.core.content.ContextCompat
-import com.example.airtickets_data.models.BaseModel
-import com.example.airtickets_data.models.TicketOfferModel
+import com.example.domain.models.BaseModel
+import com.example.domain.models.TicketOfferModel
 import com.example.common_resources.R
 import com.example.airtickets_feature.databinding.CardDirectFlightBinding
 import com.example.airtickets_feature.utils.formatPrice
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun ticketOfferAdapterDelegate() =
-    adapterDelegateViewBinding<TicketOfferModel, BaseModel, CardDirectFlightBinding>(
+    adapterDelegateViewBinding<com.example.domain.models.TicketOfferModel, com.example.domain.models.BaseModel, CardDirectFlightBinding>(
         { layoutInflater, parent ->
             CardDirectFlightBinding.inflate(layoutInflater, parent, false)
         }

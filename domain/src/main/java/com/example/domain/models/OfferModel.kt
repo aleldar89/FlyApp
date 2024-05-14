@@ -1,4 +1,4 @@
-package com.example.airtickets_data.models
+package com.example.domain.models
 
 data class OfferModel(
     override val id: Int,

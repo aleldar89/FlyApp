@@ -1,5 +1,6 @@
 package com.example.airtickets_data.repository
 
+import com.example.domain.AirticketsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

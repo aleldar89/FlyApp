@@ -1,6 +1,6 @@
-package com.example.airtickets_data.usecases
+package com.example.domain.usecases
 
-import com.example.airtickets_data.repository.AirticketsRepository
+import com.example.domain.AirticketsRepository
 import javax.inject.Inject
 
 class GetOffersUseCase @Inject constructor(

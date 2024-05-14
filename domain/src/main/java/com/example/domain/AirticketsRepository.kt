@@ -1,9 +1,9 @@
-package com.example.airtickets_data.repository
+package com.example.domain
 
 import androidx.lifecycle.LiveData
-import com.example.airtickets_data.models.OfferModel
-import com.example.airtickets_data.models.TicketModel
-import com.example.airtickets_data.models.TicketOfferModel
+import com.example.domain.models.OfferModel
+import com.example.domain.models.TicketModel
+import com.example.domain.models.TicketOfferModel
 
 interface AirticketsRepository {
 

@@ -2,6 +2,7 @@ package com.example.airtickets_feature.fragments
 
 import android.os.Bundle
 import android.text.Editable
+import com.example.airtickets_feature.R
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.airtickets_feature.AirticketsViewModel
 import com.example.airtickets_feature.databinding.FragmentBottomSheetBinding
 import com.example.airtickets_feature.loadImage
-import com.example.common_resources.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +27,10 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.TransparentDialogTheme)
+        setStyle(
+            DialogFragment.STYLE_NO_TITLE,
+            com.example.common_resources.R.style.TransparentDialogTheme
+        )
     }
 
     override fun onCreateView(
@@ -49,7 +52,12 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
             }
 
             inputTxtTo.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
@@ -58,7 +66,7 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
                     if (text.isNotEmpty()) {
                         dismiss()
                         findNavController().navigate(
-                            com.example.airtickets_feature.R.id.searchCountryFragment
+                            R.id.searchCountryFragment
                         )
                     }
                 }
@@ -92,47 +100,33 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setClickListeners() {
         binding.apply {
-            clearTxt.setOnClickListener {
-                inputTxtTo.setText("")
-            }
-            routeContainer1.setOnClickListener {
-                inputTxtTo.setText(cityName1.text)
-            }
-            routeContainer2.setOnClickListener {
-                inputTxtTo.setText(cityName2.text)
-            }
-            routeContainer3.setOnClickListener {
-                inputTxtTo.setText(cityName3.text)
-            }
+            clearTxt.setOnClickListener { inputTxtTo.setText("") }
+            routeContainer1.setOnClickListener { inputTxtTo.setText(cityName1.text) }
+            routeContainer2.setOnClickListener { inputTxtTo.setText(cityName2.text) }
+            routeContainer3.setOnClickListener { inputTxtTo.setText(cityName3.text) }
             anywhere.setOnClickListener {
                 inputTxtTo.setText(
                     context?.resources?.getString(
-                        R.string.anywhere
+                        com.example.common_resources.R.string.anywhere
                     )
                 )
             }
-            diffRoute.setOnClickListener {
-                navigateToEmpty()
-            }
-            weekend.setOnClickListener {
-                navigateToEmpty()
-            }
-            hot.setOnClickListener {
-                navigateToEmpty()
-            }
+            diffRoute.setOnClickListener { navigateToEmpty() }
+            weekend.setOnClickListener { navigateToEmpty() }
+            hot.setOnClickListener { navigateToEmpty() }
         }
     }
 
     private fun loadImages() {
         binding.apply {
-            imageView1.loadImage(com.example.airtickets_feature.R.drawable.four)
-            imageView2.loadImage(com.example.airtickets_feature.R.drawable.five)
-            imageView3.loadImage(com.example.airtickets_feature.R.drawable.six)
+            imageView1.loadImage(R.drawable.four)
+            imageView2.loadImage(R.drawable.five)
+            imageView3.loadImage(R.drawable.six)
         }
     }
 
     private fun navigateToEmpty() {
         dismiss()
-        findNavController().navigate(com.example.airtickets_feature.R.id.emptyFragment)
+        findNavController().navigate(R.id.emptyFragment)
     }
 }

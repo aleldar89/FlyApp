@@ -1,10 +1,10 @@
 package com.example.airtickets_data.database
 
 import androidx.room.TypeConverter
-import com.example.airtickets_data.models.FlightInfo
-import com.example.airtickets_data.models.HandLuggage
-import com.example.airtickets_data.models.Luggage
-import com.example.airtickets_data.models.PriceModel
+import com.example.domain.models.FlightInfoModel
+import com.example.domain.models.HandLuggageModel
+import com.example.domain.models.LuggageModel
+import com.example.domain.models.PriceModel
 import com.google.gson.Gson
 
 class Converter {
@@ -23,23 +23,23 @@ class Converter {
     fun fromIntToPriceModel(value: Int): PriceModel = PriceModel(value)
 
     @TypeConverter
-    fun fromFlightInfoToString(flightInfo: FlightInfo): String? = Gson().toJson(flightInfo)
+    fun fromFlightInfoToString(flightInfo: FlightInfoModel): String? = Gson().toJson(flightInfo)
 
     @TypeConverter
-    fun fromStringToFlightInfo(string: String): FlightInfo =
-        Gson().fromJson(string, FlightInfo::class.java)
+    fun fromStringToFlightInfo(string: String): FlightInfoModel =
+        Gson().fromJson(string, FlightInfoModel::class.java)
 
     @TypeConverter
-    fun fromLuggageToString(luggage: Luggage): String? = Gson().toJson(luggage)
+    fun fromLuggageToString(luggage: LuggageModel): String = Gson().toJson(luggage)
 
     @TypeConverter
-    fun fromStringToLuggage(string: String): Luggage =
-        Gson().fromJson(string, Luggage::class.java)
+    fun fromStringToLuggage(string: String): LuggageModel =
+        Gson().fromJson(string, LuggageModel::class.java)
 
     @TypeConverter
-    fun fromHandLuggageToString(handLuggage: HandLuggage): String? = Gson().toJson(handLuggage)
+    fun fromHandLuggageToString(handLuggage: HandLuggageModel): String = Gson().toJson(handLuggage)
 
     @TypeConverter
-    fun fromStringToHandLuggage(string: String): HandLuggage =
-        Gson().fromJson(string, HandLuggage::class.java)
+    fun fromStringToHandLuggage(string: String): HandLuggageModel =
+        Gson().fromJson(string, HandLuggageModel::class.java)
 }
