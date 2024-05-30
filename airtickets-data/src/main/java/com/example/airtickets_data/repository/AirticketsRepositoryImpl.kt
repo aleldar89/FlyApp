@@ -19,7 +19,7 @@ private const val TICKETS_KEY = "tickets"
 
 class AirticketsRepositoryImpl @Inject constructor(
     private val dao: AirticketsDao,
-    private val apiService: ApiService,
+    private val apiService: ApiService
 ) : AirticketsRepository {
 
     override val offersData: LiveData<List<OfferModel>> =
@@ -48,7 +48,7 @@ class AirticketsRepositoryImpl @Inject constructor(
             try {
                 apiService.getOffers()
             } catch (e: Exception) {
-                testOffersRequest()
+                testOffersRequest() // if server is not responding
             }
         }.map { model ->
             model.toEntity()
@@ -61,7 +61,7 @@ class AirticketsRepositoryImpl @Inject constructor(
             try {
                 apiService.getTicketsOffers()
             } catch (e: Exception) {
-                testTicketsOffersRequest()
+                testTicketsOffersRequest() // if server is not responding
             }
         }.map { model ->
             model.toEntity()
@@ -73,7 +73,7 @@ class AirticketsRepositoryImpl @Inject constructor(
             try {
                 apiService.getTickets()
             } catch (e: Exception) {
-                testTicketsRequest()
+                testTicketsRequest() // if server is not responding
             }
         }.map { model ->
             model.toEntity()

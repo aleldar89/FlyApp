@@ -13,7 +13,7 @@ import com.example.common_resources.R
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun ticketAdapterDelegate() =
-    adapterDelegateViewBinding<com.example.domain.models.TicketModel, com.example.domain.models.BaseModel, CardTicketBinding>(
+    adapterDelegateViewBinding<TicketModel, BaseModel, CardTicketBinding>(
         { layoutInflater, parent ->
             CardTicketBinding.inflate(layoutInflater, parent, false)
         }

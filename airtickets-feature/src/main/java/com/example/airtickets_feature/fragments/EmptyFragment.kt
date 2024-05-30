@@ -20,7 +20,6 @@ class EmptyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentEmptyBinding.inflate(inflater, container, false)
 
         return binding.root

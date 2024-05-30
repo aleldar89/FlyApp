@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airtickets_feature.AirticketsViewModel
-import com.example.airtickets_feature.adapters.offerAdapterDelegate
+import com.example.airtickets_feature.adapters.BaseAdapter
 import com.example.airtickets_feature.databinding.FragmentMainBinding
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +20,8 @@ class AirticketsMainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
         get() = _binding ?: throw IllegalStateException("Uninitialized binding")
+
+    private val adapter by lazy { BaseAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +46,6 @@ class AirticketsMainFragment : Fragment() {
                 bottomSheet.show(parentFragmentManager, bottomSheet.tag)
             }
 
-            val adapter = ListDelegationAdapter(offerAdapterDelegate())
             recyclerView.adapter = adapter
             val layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -53,7 +53,6 @@ class AirticketsMainFragment : Fragment() {
 
             viewModel.offersData.observe(viewLifecycleOwner) { offers ->
                 adapter.items = offers
-                adapter.notifyDataSetChanged() //FIXME
             }
         }
     }
@@ -62,8 +61,7 @@ class AirticketsMainFragment : Fragment() {
         super.onDestroyView()
         saveDepartureLocation()
         _binding = null
-        viewModel.departureLocation.removeObservers(viewLifecycleOwner)
-        viewModel.offersData.removeObservers(viewLifecycleOwner)
+        viewModel.removeObservers(viewLifecycleOwner)
     }
 
     override fun onPause() {

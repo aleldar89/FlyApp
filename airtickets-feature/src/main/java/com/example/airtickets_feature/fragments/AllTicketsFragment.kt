@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airtickets_feature.AirticketsViewModel
+import com.example.airtickets_feature.adapters.BaseAdapter
 import com.example.airtickets_feature.adapters.ticketAdapterDelegate
 import com.example.airtickets_feature.databinding.FragmentAllTicketsBinding
 import com.example.common_resources.R
@@ -23,6 +24,8 @@ class AllTicketsFragment : Fragment() {
     private var _binding: FragmentAllTicketsBinding? = null
     private val binding: FragmentAllTicketsBinding
         get() = _binding ?: throw IllegalStateException("Uninitialized binding")
+
+    private val adapter by lazy { BaseAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,14 +43,12 @@ class AllTicketsFragment : Fragment() {
 
             setObservers()
 
-            val adapter = ListDelegationAdapter(ticketAdapterDelegate())
             recyclerView.adapter = adapter
             recyclerView.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
             viewModel.ticketsData.observe(viewLifecycleOwner) { tickets ->
                 adapter.items = tickets
-                adapter.notifyDataSetChanged() //FIXME
             }
 
             back.setOnClickListener {

@@ -9,7 +9,7 @@ import com.example.airtickets_feature.utils.formatPrice
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun ticketOfferAdapterDelegate() =
-    adapterDelegateViewBinding<com.example.domain.models.TicketOfferModel, com.example.domain.models.BaseModel, CardDirectFlightBinding>(
+    adapterDelegateViewBinding<TicketOfferModel, BaseModel, CardDirectFlightBinding>(
         { layoutInflater, parent ->
             CardDirectFlightBinding.inflate(layoutInflater, parent, false)
         }

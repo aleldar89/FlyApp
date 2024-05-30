@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airtickets_feature.AirticketsViewModel
+import com.example.airtickets_feature.adapters.BaseAdapter
 import com.example.airtickets_feature.adapters.ticketOfferAdapterDelegate
 import com.example.airtickets_feature.databinding.FragmentSearchCountryBinding
 import com.example.airtickets_feature.utils.dateFormat
@@ -28,6 +29,8 @@ class SearchCountryFragment : Fragment() {
     private val binding: FragmentSearchCountryBinding
         get() = _binding ?: throw IllegalStateException("Uninitialized binding")
 
+    private val adapter by lazy { BaseAdapter() }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,15 +48,13 @@ class SearchCountryFragment : Fragment() {
             setOnClickListeners()
             setObservers()
 
-            val adapter = ListDelegationAdapter(ticketOfferAdapterDelegate())
             recyclerView.adapter = adapter
             recyclerView.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
             viewModel.ticketsOffersData.observe(viewLifecycleOwner) { ticketsOffers ->
-                val itemsToShow = ticketsOffers.take(3) // Взять только первые три элемента
+                val itemsToShow = ticketsOffers.take(3)
                 adapter.items = itemsToShow
-                adapter.notifyDataSetChanged() //FIXME
             }
         }
     }

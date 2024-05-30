@@ -1,9 +1,6 @@
 package com.example.airtickets_feature.fragments
 
 import android.os.Bundle
-import android.text.Editable
-import com.example.airtickets_feature.R
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +8,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.airtickets_feature.AirticketsViewModel
+import com.example.airtickets_feature.R
 import com.example.airtickets_feature.databinding.FragmentBottomSheetBinding
 import com.example.airtickets_feature.loadImage
+import com.example.airtickets_feature.utils.afterTextChanged
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,29 +50,15 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
                     inputTxtFrom.setText(it)
             }
 
-            inputTxtTo.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {}
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-                override fun afterTextChanged(s: Editable?) {
-                    val text = s.toString().trim()
-                    if (text.isNotEmpty()) {
-                        dismiss()
-                        findNavController().navigate(
-                            R.id.searchCountryFragment
-                        )
-                    }
+            inputTxtTo.afterTextChanged { text ->
+                if (text.isNotEmpty()) {
+                    dismiss()
+                    findNavController().navigate(R.id.searchCountryFragment)
                 }
-            })
+            }
         }
         loadImages()
-        setClickListeners()
+        setOnClickListeners()
     }
 
     override fun onDestroyView() {
@@ -98,7 +83,7 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setClickListeners() {
+    private fun setOnClickListeners() {
         binding.apply {
             clearTxt.setOnClickListener { inputTxtTo.setText("") }
             routeContainer1.setOnClickListener { inputTxtTo.setText(cityName1.text) }

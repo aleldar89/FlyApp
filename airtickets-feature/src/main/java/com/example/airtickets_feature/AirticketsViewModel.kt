@@ -96,8 +96,10 @@ class AirticketsViewModel @Inject constructor(
 
     fun removeObservers(lifecycleOwner: LifecycleOwner) =
         arrayOf(
-            departureDate,
+            offersData,
+            ticketsOffersData,
             ticketsData,
+            departureDate,
             departureLocation,
             arrivalLocation
         ).forEach { it.removeObservers(lifecycleOwner) }
