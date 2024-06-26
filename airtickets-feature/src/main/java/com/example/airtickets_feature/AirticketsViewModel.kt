@@ -87,9 +87,7 @@ class AirticketsViewModel @Inject constructor(
     private fun doRequest(
         request: suspend () -> Unit
     ) = try {
-        viewModelScope.launch(Dispatchers.IO) {
-            request()
-        }
+        viewModelScope.launch(Dispatchers.IO) { request() }
     } catch (e: Exception) {
         throw e
     }

@@ -23,66 +23,63 @@ class AirticketsRepositoryImpl @Inject constructor(
 ) : AirticketsRepository {
 
     override val offersData: LiveData<List<OfferModel>> =
-        dao.getOffers().map { list ->
-            list.map {
-                it.toModel()
-            }
-        }
+        dao.getOffers().mapList { it.toModel() }
 
     override val ticketsOffersData: LiveData<List<TicketOfferModel>> =
-        dao.getTicketsOffers().map { list ->
-            list.map {
-                it.toModel()
-            }
-        }
+        dao.getTicketsOffers().mapList { it.toModel() }
 
     override val ticketsData: LiveData<List<TicketModel>> =
-        dao.getTickets().map { list ->
-            list.map {
-                it.toModel()
-            }
-        }
+        dao.getTickets().mapList { it.toModel() }
 
     override suspend fun getOffersRemoteData() {
-        dao.insertOffers(doNetworkRequest(OFFERS_KEY) {
-            try {
-                apiService.getOffers()
-            } catch (e: Exception) {
-                testOffersRequest() // if server is not responding
-            }
-        }.map { model ->
-            model.toEntity()
-        })
+        getDataAndInsert(
+            key = OFFERS_KEY,
+            request = { apiService.getOffers() },
+            fallback = { testOffersRequest() },
+            mapDtoToEntity = { it.toEntity() },
+            insert = { dao.insertOffers(it) }
+        )
     }
 
-
     override suspend fun getTicketsOffersRemoteData() {
-        dao.insertTicketsOffers(doNetworkRequest(TICKETS_OFFERS_KEY) {
-            try {
-                apiService.getTicketsOffers()
-            } catch (e: Exception) {
-                testTicketsOffersRequest() // if server is not responding
-            }
-        }.map { model ->
-            model.toEntity()
-        })
+        getDataAndInsert(
+            key = TICKETS_OFFERS_KEY,
+            request = { apiService.getTicketsOffers() },
+            fallback = { testTicketsOffersRequest() },
+            mapDtoToEntity = { it.toEntity() },
+            insert = { dao.insertTicketsOffers(it) }
+        )
     }
 
     override suspend fun getTicketsRemoteData() {
-        dao.insertTickets(doNetworkRequest(TICKETS_KEY) {
-            try {
-                apiService.getTickets()
-            } catch (e: Exception) {
-                testTicketsRequest() // if server is not responding
-            }
-        }.map { model ->
-            model.toEntity()
-        })
+        getDataAndInsert(
+            key = TICKETS_KEY,
+            request = { apiService.getTickets() },
+            fallback = { testTicketsRequest() },
+            mapDtoToEntity = { it.toEntity() },
+            insert = { dao.insertTickets(it) }
+        )
     }
+
+    private suspend fun <K, D, E> getDataAndInsert(
+        key: K,
+        request: suspend () -> LinkedTreeMap<K, List<D>>,
+        fallback: suspend () -> LinkedTreeMap<K, List<D>>,
+        mapDtoToEntity: (D) -> E,
+        insert: suspend (List<E>) -> Unit
+    ) = insert(
+        try {
+            doNetworkRequest(key, request)
+        } catch (e: Exception) {
+            doNetworkRequest(key, fallback)
+        }.map(mapDtoToEntity)
+    )
 
     private suspend fun <K, D> doNetworkRequest(
         key: K,
         request: suspend () -> LinkedTreeMap<K, List<D>>
     ): List<D> = request()[key] ?: throw Exception("Response body is null")
-}
 
+    private fun <E, M> LiveData<List<E>>.mapList(entityToModel: (E) -> M): LiveData<List<M>> =
+        this.map { list -> list.map(entityToModel) }
+}

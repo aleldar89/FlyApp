@@ -8,12 +8,12 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("00727197-24ae-48a0-bcb3-63eb35d7a9de")
+    @GET("ad9a46ba-276c-4a81-88a6-c068e51cce3a")
     suspend fun getOffers(): LinkedTreeMap<String, List<OfferDTO>>
 
-    @GET("3424132d-a51a-4613-b6c9-42b2d214f35f")
+    @GET("38b5205d-1a3d-4c2f-9d77-2f9d1ef01a4a")
     suspend fun getTicketsOffers(): LinkedTreeMap<String, List<TicketOfferDTO>>
 
-    @GET("2dbc0999-86bf-4c08-8671-bac4b7a5f7eb")
+    @GET("c0464573-5a13-45c9-89f8-717436748b69")
     suspend fun getTickets(): LinkedTreeMap<String, List<TicketDTO>>
 }
