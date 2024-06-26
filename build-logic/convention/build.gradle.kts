@@ -26,7 +26,7 @@ gradlePlugin {
     /** register the convention plugin */
     plugins {
         register("androidLibrary") {
-            id = "tickets.android.library"
+            id = "flyapp.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
     }

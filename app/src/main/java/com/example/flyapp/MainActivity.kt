@@ -1,4 +1,4 @@
-package com.example.tickets
+package com.example.flyapp
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -7,8 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
-import com.example.airtickets_feature.databinding.FragmentMainBinding
-import com.example.tickets.databinding.ActivityMainBinding
+import com.example.flyapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

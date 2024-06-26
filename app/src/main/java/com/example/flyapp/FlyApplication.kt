@@ -1,7 +1,7 @@
-package com.example.tickets
+package com.example.flyapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class TicketsApplication: Application()
+class FlyApplication: Application()

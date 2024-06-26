@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tickets"
+    namespace = "com.example.flyapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.tickets"
+        applicationId = "com.example.flyapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -48,7 +48,6 @@ dependencies {
     implementation(project(":short-feature"))
     implementation(project(":subscribe-feature"))
     implementation(project(":profile-feature"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

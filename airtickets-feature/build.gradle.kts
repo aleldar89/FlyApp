@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.tickets.android.library)
+    alias(libs.plugins.flyapp.android.library)
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt.android)

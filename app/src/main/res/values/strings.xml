@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tickets</string>
+    <string name="app_name">FlyApp</string>
     <string name="title_airtickets">Авиабилеты</string>
     <string name="title_hotels">Отели</string>
     <string name="title_short">Короче</string>

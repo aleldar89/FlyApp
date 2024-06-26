@@ -31,47 +31,41 @@ class AirticketsRepositoryImpl @Inject constructor(
     override val ticketsData: LiveData<List<TicketModel>> =
         dao.getTickets().mapList { it.toModel() }
 
-    override suspend fun getOffersRemoteData() {
-        getDataAndInsert(
-            key = OFFERS_KEY,
-            request = { apiService.getOffers() },
-            fallback = { testOffersRequest() },
-            mapDtoToEntity = { it.toEntity() },
-            insert = { dao.insertOffers(it) }
-        )
-    }
+    override suspend fun getOffersRemoteData() = getDataAndInsert(
+        key = OFFERS_KEY,
+        request = { apiService.getOffers() },
+        localTestRequest = { testOffersRequest() },
+        mapDtoToEntity = { it.toEntity() },
+        insert = { dao.insertOffers(it) }
+    )
 
-    override suspend fun getTicketsOffersRemoteData() {
-        getDataAndInsert(
-            key = TICKETS_OFFERS_KEY,
-            request = { apiService.getTicketsOffers() },
-            fallback = { testTicketsOffersRequest() },
-            mapDtoToEntity = { it.toEntity() },
-            insert = { dao.insertTicketsOffers(it) }
-        )
-    }
+    override suspend fun getTicketsOffersRemoteData() = getDataAndInsert(
+        key = TICKETS_OFFERS_KEY,
+        request = { apiService.getTicketsOffers() },
+        localTestRequest = { testTicketsOffersRequest() },
+        mapDtoToEntity = { it.toEntity() },
+        insert = { dao.insertTicketsOffers(it) }
+    )
 
-    override suspend fun getTicketsRemoteData() {
-        getDataAndInsert(
-            key = TICKETS_KEY,
-            request = { apiService.getTickets() },
-            fallback = { testTicketsRequest() },
-            mapDtoToEntity = { it.toEntity() },
-            insert = { dao.insertTickets(it) }
-        )
-    }
+    override suspend fun getTicketsRemoteData() = getDataAndInsert(
+        key = TICKETS_KEY,
+        request = { apiService.getTickets() },
+        localTestRequest = { testTicketsRequest() },
+        mapDtoToEntity = { it.toEntity() },
+        insert = { dao.insertTickets(it) }
+    )
 
     private suspend fun <K, D, E> getDataAndInsert(
         key: K,
         request: suspend () -> LinkedTreeMap<K, List<D>>,
-        fallback: suspend () -> LinkedTreeMap<K, List<D>>,
+        localTestRequest: suspend () -> LinkedTreeMap<K, List<D>>,
         mapDtoToEntity: (D) -> E,
         insert: suspend (List<E>) -> Unit
     ) = insert(
         try {
             doNetworkRequest(key, request)
         } catch (e: Exception) {
-            doNetworkRequest(key, fallback)
+            doNetworkRequest(key, localTestRequest)
         }.map(mapDtoToEntity)
     )
 

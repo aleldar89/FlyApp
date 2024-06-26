@@ -75,5 +75,4 @@ androidx-navigation-safeargs = { id = "androidx.navigation.safeargs", version.re
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 
-tickets-android-library = { id = "tickets.android.library", version = "unspecified" }
-
+flyapp-android-library = { id = "flyapp.android.library", version = "unspecified" }

@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/airticketsMainFragment"
         android:name="com.example.airtickets_feature.fragments.AirticketsMainFragment"
-        android:label="MainFragment" />
+        android:label="AirticketsMainFragment" />
     <dialog
         android:id="@+id/searchBottomSheetFragment"
         android:name="com.example.airtickets_feature.fragments.SearchBottomSheetFragment"
