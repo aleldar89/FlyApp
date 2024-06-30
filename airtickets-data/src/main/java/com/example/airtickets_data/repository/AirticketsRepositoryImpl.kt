@@ -22,8 +22,7 @@ class AirticketsRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : AirticketsRepository {
 
-    override val offersData: LiveData<List<OfferModel>> =
-        dao.getOffers().mapList { it.toModel() }
+    override val offersData: LiveData<List<OfferModel>> = dao.getOffers().mapList { it.toModel() }
 
     override val ticketsOffersData: LiveData<List<TicketOfferModel>> =
         dao.getTicketsOffers().mapList { it.toModel() }
@@ -32,27 +31,27 @@ class AirticketsRepositoryImpl @Inject constructor(
         dao.getTickets().mapList { it.toModel() }
 
     override suspend fun getOffersRemoteData() = getDataAndInsert(
+        insert = { dao.insertOffers(it) },
         key = OFFERS_KEY,
         request = { apiService.getOffers() },
         localTestRequest = { testOffersRequest() },
-        mapDtoToEntity = { it.toEntity() },
-        insert = { dao.insertOffers(it) }
+        mapDtoToEntity = { it.toEntity() }
     )
 
     override suspend fun getTicketsOffersRemoteData() = getDataAndInsert(
+        insert = { dao.insertTicketsOffers(it) },
         key = TICKETS_OFFERS_KEY,
         request = { apiService.getTicketsOffers() },
         localTestRequest = { testTicketsOffersRequest() },
-        mapDtoToEntity = { it.toEntity() },
-        insert = { dao.insertTicketsOffers(it) }
+        mapDtoToEntity = { it.toEntity() }
     )
 
     override suspend fun getTicketsRemoteData() = getDataAndInsert(
+        insert = { dao.insertTickets(it) },
         key = TICKETS_KEY,
         request = { apiService.getTickets() },
         localTestRequest = { testTicketsRequest() },
-        mapDtoToEntity = { it.toEntity() },
-        insert = { dao.insertTickets(it) }
+        mapDtoToEntity = { it.toEntity() }
     )
 
     private suspend fun <K, D, E> getDataAndInsert(

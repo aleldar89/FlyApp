@@ -4,7 +4,7 @@ import com.example.domain.models.BaseModel
 import com.example.domain.models.OfferModel
 import com.example.airtickets_feature.R
 import com.example.airtickets_feature.databinding.CardMusicRouteBinding
-import com.example.airtickets_feature.loadImage
+import com.example.airtickets_feature.utils.loadImage
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun offerAdapterDelegate() =
@@ -14,7 +14,6 @@ fun offerAdapterDelegate() =
     ) {
         bind {
             binding.apply {
-
                 imageView.loadImage(
                     when (item.id) {
                         1 -> R.drawable.one

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.airtickets_feature.AirticketsViewModel
 import com.example.airtickets_feature.R
 import com.example.airtickets_feature.databinding.FragmentBottomSheetBinding
-import com.example.airtickets_feature.loadImage
+import com.example.airtickets_feature.utils.loadImage
 import com.example.airtickets_feature.utils.afterTextChanged
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,11 +38,20 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBottomSheetBinding.inflate(inflater, container, false)
-        return binding.root
+
+        return binding.root.apply {
+            post {
+                val layoutParams = this.layoutParams
+                layoutParams.height = resources.displayMetrics.heightPixels
+                this.layoutParams = layoutParams
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadImages()
+        setOnClickListeners()
 
         binding.apply {
             viewModel.departureLocation.observe(viewLifecycleOwner) {
@@ -57,8 +66,6 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
                 }
             }
         }
-        loadImages()
-        setOnClickListeners()
     }
 
     override fun onDestroyView() {
@@ -91,7 +98,7 @@ class SearchBottomSheetFragment : BottomSheetDialogFragment() {
             routeContainer3.setOnClickListener { inputTxtTo.setText(cityName3.text) }
             anywhere.setOnClickListener {
                 inputTxtTo.setText(
-                    context?.resources?.getString(
+                    resources.getString(
                         com.example.common_resources.R.string.anywhere
                     )
                 )

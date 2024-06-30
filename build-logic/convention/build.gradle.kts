@@ -23,7 +23,6 @@ dependencies {
 }
 
 gradlePlugin {
-    /** register the convention plugin */
     plugins {
         register("androidLibrary") {
             id = "flyapp.android.library"

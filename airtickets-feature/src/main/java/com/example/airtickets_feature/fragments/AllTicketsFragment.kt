@@ -10,11 +10,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airtickets_feature.AirticketsViewModel
 import com.example.airtickets_feature.adapters.BaseAdapter
-import com.example.airtickets_feature.adapters.ticketAdapterDelegate
 import com.example.airtickets_feature.databinding.FragmentAllTicketsBinding
+import com.example.airtickets_feature.utils.dateFormat
+import com.example.airtickets_feature.utils.dateFullFormat
 import com.example.common_resources.R
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @AndroidEntryPoint
 class AllTicketsFragment : Fragment() {
@@ -38,22 +40,14 @@ class AllTicketsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setObservers()
 
         binding.apply {
-
-            setObservers()
-
             recyclerView.adapter = adapter
             recyclerView.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-            viewModel.ticketsData.observe(viewLifecycleOwner) { tickets ->
-                adapter.items = tickets
-            }
-
-            back.setOnClickListener {
-                findNavController().navigateUp()
-            }
+            back.setOnClickListener { findNavController().navigateUp() }
         }
     }
 
@@ -64,22 +58,27 @@ class AllTicketsFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.departureDate.observe(viewLifecycleOwner) { currentDate ->
-            binding.txtDetails.text = context?.resources?.getString(
-                R.string.detail_data,
-                currentDate.first
-            )
-        }
-        viewModel.departureLocation.observe(viewLifecycleOwner) {
-            if (it != null)
-                binding.txtFrom.text = it
-        }
-        viewModel.arrivalLocation.observe(viewLifecycleOwner) {
-            if (it != null)
-                binding.txtTo.text = context?.resources?.getString(
-                    R.string.to,
-                    it
+        viewModel.apply {
+            ticketsData.observe(viewLifecycleOwner) { tickets ->
+                adapter.items = tickets
+            }
+
+            departureDate.observe(viewLifecycleOwner) { date ->
+                binding.txtDetails.text = resources.getString(
+                    R.string.detail_data,
+                    dateFullFormat().format(date.first)
                 )
+            }
+
+            departureLocation.observe(viewLifecycleOwner) {
+                if (it != null)
+                    binding.txtFrom.text = it
+            }
+
+            arrivalLocation.observe(viewLifecycleOwner) {
+                if (it != null)
+                    binding.txtTo.text = resources.getString(R.string.to, it)
+            }
         }
     }
 }

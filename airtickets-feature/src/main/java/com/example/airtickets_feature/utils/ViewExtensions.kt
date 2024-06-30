@@ -1,4 +1,4 @@
-package com.example.airtickets_feature
+package com.example.airtickets_feature.utils
 
 import com.example.common_resources.R
 import android.widget.ImageView
@@ -10,9 +10,11 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 
 fun ImageView.loadImage(@DrawableRes resId: Int) {
-    val transformations = mutableListOf<BitmapTransformation>()
-    transformations.add(CenterCrop())
-    transformations.add(RoundedCorners(resources.getDimensionPixelSize(R.dimen.corner_radius_8)))
+
+    val transformations = mutableListOf<BitmapTransformation>().apply {
+        add(CenterCrop())
+        add(RoundedCorners(resources.getDimensionPixelSize(R.dimen.corner_radius_8)))
+    }
 
     Glide.with(this)
         .load(resId)

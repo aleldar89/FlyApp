@@ -11,12 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.airtickets_feature.AirticketsViewModel
 import com.example.airtickets_feature.adapters.BaseAdapter
-import com.example.airtickets_feature.adapters.ticketOfferAdapterDelegate
 import com.example.airtickets_feature.databinding.FragmentSearchCountryBinding
 import com.example.airtickets_feature.utils.dateFormat
 import com.example.airtickets_feature.utils.dayOfWeekFormat
 import com.example.common_resources.R
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
@@ -42,12 +40,10 @@ class SearchCountryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setOnClickListeners()
+        setObservers()
 
         binding.apply {
-
-            setOnClickListeners()
-            setObservers()
-
             recyclerView.adapter = adapter
             recyclerView.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -92,7 +88,7 @@ class SearchCountryFragment : Fragment() {
             btnDepartureData.setOnClickListener { showDatePicker() }
             clearIcon.setOnClickListener { inputTxtTo.setText("") }
             back.setOnClickListener { findNavController().navigateUp() }
-            binding.btnShowAll.setOnClickListener {
+            btnShowAll.setOnClickListener {
                 findNavController().navigate(
                     com.example.airtickets_feature.R.id.allTicketsFragment
                 )
@@ -101,23 +97,29 @@ class SearchCountryFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.departureDate.observe(viewLifecycleOwner) { currentDate ->
-            binding.txtDepartureData.text = currentDate.first
-            binding.txtDepartureDay.text = currentDate.second
-        }
-        viewModel.departureLocation.observe(viewLifecycleOwner) {
-            if (it != null)
-                binding.inputTxtFrom.setText(it)
-        }
-        viewModel.arrivalLocation.observe(viewLifecycleOwner) {
-            if (it != null)
-                binding.inputTxtTo.setText(it)
+        viewModel.apply {
+            ticketsOffersData.observe(viewLifecycleOwner) { ticketsOffers ->
+                val itemsToShow = ticketsOffers.take(3)
+                adapter.items = itemsToShow
+            }
+            departureDate.observe(viewLifecycleOwner) { date ->
+                binding.txtDepartureData.text = dateFormat().format(date.first)
+                binding.txtDepartureDay.text = date.second
+            }
+            departureLocation.observe(viewLifecycleOwner) {
+                if (it != null)
+                    binding.inputTxtFrom.setText(it)
+            }
+            arrivalLocation.observe(viewLifecycleOwner) {
+                if (it != null)
+                    binding.inputTxtTo.setText(it)
+            }
         }
     }
 
     private fun showDatePicker() {
         val currentDate = Calendar.getInstance()
-        val datePicker = DatePickerDialog(
+        DatePickerDialog(
             requireContext(),
             { _, year, month, dayOfMonth ->
                 currentDate.set(year, month, dayOfMonth)
@@ -126,18 +128,15 @@ class SearchCountryFragment : Fragment() {
             currentDate.get(Calendar.YEAR),
             currentDate.get(Calendar.MONTH),
             currentDate.get(Calendar.DAY_OF_MONTH)
-        )
-        datePicker.show()
+        ).show()
     }
 
     private fun updateDateViews(date: Calendar) {
-        binding.apply {
-            txtDepartureData.text = dateFormat().format(date.time)
-            txtDepartureDay.text = context?.resources?.getString(
-                R.string.day_of_week,
-                dayOfWeekFormat().format(date.time)
-            )
-        }
+        binding.txtDepartureData.text = dateFormat().format(date.time)
+        binding.txtDepartureDay.text = resources.getString(
+            R.string.day_of_week,
+            dayOfWeekFormat().format(date.time)
+        )
         viewModel.saveDepartureDate(date)
     }
 }

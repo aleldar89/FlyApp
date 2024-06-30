@@ -12,6 +12,8 @@ fun formatPrice(price: Int) =
 
 fun dateFormat() = SimpleDateFormat("dd MMM", ruLocale())
 
+fun dateFullFormat() = SimpleDateFormat("dd MMMM", ruLocale())
+
 fun dayOfWeekFormat() = SimpleDateFormat("EE", ruLocale())
 
 fun calculateHoursDifference(departureDate: String, arrivalDate: String): Double {

@@ -34,25 +34,16 @@ class AirticketsMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setObservers()
 
         binding.apply {
-            viewModel.departureLocation.observe(viewLifecycleOwner) {
-                if (it != null)
-                    inputTxtFrom.setText(it)
-            }
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
             inputTxtTo.setOnClickListener {
                 val bottomSheet = SearchBottomSheetFragment()
                 bottomSheet.show(parentFragmentManager, bottomSheet.tag)
-            }
-
-            recyclerView.adapter = adapter
-            val layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            recyclerView.layoutManager = layoutManager
-
-            viewModel.offersData.observe(viewLifecycleOwner) { offers ->
-                adapter.items = offers
             }
         }
     }
@@ -70,9 +61,21 @@ class AirticketsMainFragment : Fragment() {
     }
 
     private fun saveDepartureLocation() {
-        binding.apply {
-            if (inputTxtFrom.text != null)
-                viewModel.saveDepartureLocation(inputTxtFrom.text.toString())
+        binding.inputTxtFrom.text?.toString()?.let {
+            viewModel.saveDepartureLocation(it)
+        }
+    }
+
+    private fun setObservers() {
+        viewModel.apply {
+            offersData.observe(viewLifecycleOwner) { offers ->
+                adapter.items = offers
+            }
+
+            departureLocation.observe(viewLifecycleOwner) {
+                if (it != null)
+                    binding.inputTxtFrom.setText(it)
+            }
         }
     }
 }

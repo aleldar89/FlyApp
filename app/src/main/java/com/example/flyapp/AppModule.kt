@@ -20,7 +20,5 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideResources(context: Context): Resources {
-        return context.resources
-    }
+    fun provideResources(context: Context): Resources = context.resources
 }

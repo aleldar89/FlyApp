@@ -15,15 +15,6 @@ adapterDelegates = "4.3.2"
 room = "2.6.1"
 retrofit = "2.11.0"
 loggingInterceptor = "5.0.0-alpha.12"
-rxJava3 = "3.1.8"
-rxJava3rxKotlin = "3.0.1"
-rxJava3rxAndroid = "3.0.2"
-junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-junitJunit = "4.13.2"
-androidxJunit = "1.1.5"
-espressoCoreVersion = "3.5.1"
 
 [libraries]
 gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -55,15 +46,7 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor" }
 
-rxjava3 = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxJava3" }
-rxjava3-rxkotlin = { module = "io.reactivex.rxjava3:rxkotlin", version.ref = "rxJava3rxKotlin" }
-rxjava3-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxJava3rxAndroid" }
-junit = { group = "junit", name = "junit", version.ref = "junitJunit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCoreVersion" }
-
 [bundles]
-rxjava3-bundle = ["rxjava3", "rxjava3-rxkotlin", "rxjava3-rxandroid"]
 room-bundle = ["room-ktx", "room-runtime"]
 
 [plugins]
@@ -71,7 +54,6 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
-androidx-navigation-safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigationFragmentKtx" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 

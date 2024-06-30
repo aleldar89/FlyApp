@@ -46,9 +46,8 @@ class AirticketsViewModel @Inject constructor(
     val ticketsOffersData: LiveData<List<TicketOfferModel>> = getTicketsOffersUseCase.getData()
     val ticketsData: LiveData<List<TicketModel>> = getTicketsUseCase.getData()
 
-    private val _departureDate = MutableLiveData(Pair("", ""))
-    val departureDate: LiveData<Pair<String, String>>
-        get() = _departureDate
+    private val _departureDate = MutableLiveData(getCurrentDate())
+    val departureDate: LiveData<Pair<Date, String>> = _departureDate
 
     init {
         getRemoteData()
@@ -70,23 +69,24 @@ class AirticketsViewModel @Inject constructor(
     }
 
     fun saveDepartureDate(date: Calendar) {
-        _departureDate.value = Pair(
-            dateFormat().format(date.time),
-            resources.getString(R.string.day_of_week, dayOfWeekFormat().format(date.time))
+        _departureDate.postValue(
+            Pair(
+                date.time,
+                resources.getString(R.string.day_of_week, dayOfWeekFormat().format(date.time))
+            )
         )
     }
 
-    private fun getCurrentDate() {
+    private fun getCurrentDate(): Pair<Date, String> {
         val currentDate = Calendar.getInstance().time
-        _departureDate.value = Pair(
-            dateFormat().format(currentDate),
+
+        return Pair(
+            currentDate,
             resources.getString(R.string.day_of_week, dayOfWeekFormat().format(currentDate))
         )
     }
 
-    private fun doRequest(
-        request: suspend () -> Unit
-    ) = try {
+    private fun doRequest(request: suspend () -> Unit) = try {
         viewModelScope.launch(Dispatchers.IO) { request() }
     } catch (e: Exception) {
         throw e
